@@ -7,11 +7,12 @@ This file creates your application.
 
 from app import app
 from flask import render_template, request, redirect, url_for, flash
-
+import datetime
 
 ###
 # Routing for your application.
 ###
+
 
 @app.route('/')
 def home():
@@ -22,7 +23,7 @@ def home():
 @app.route('/about/')
 def about():
     """Render the website's about page."""
-    return render_template('about.html', name="Mary Jane")
+    return render_template('about.html', name="Rushawn Campbell")
 
 
 ###
@@ -46,6 +47,16 @@ def add_header(response):
     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
     response.headers['Cache-Control'] = 'public, max-age=0'
     return response
+
+
+def format_date_joined(date):
+    datestring = "Joined " + date.strftime("%B, %Y")
+    return datestring
+
+
+@app.route("/profile")
+def profile():
+    return render_template("profile.html", datestring=format_date_joined(datetime.datetime.now()))
 
 
 @app.errorhandler(404)
