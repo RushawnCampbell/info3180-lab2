@@ -50,8 +50,7 @@ def add_header(response):
 
 
 def format_date_joined(date):
-    datestring = "Joined " + date.strftime("%B, %Y")
-    return datestring
+    return "Joined " + date.strftime("%B, %Y")
 
 
 @app.route("/profile")
